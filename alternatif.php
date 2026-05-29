@@ -82,8 +82,8 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
               <a class="nav-link-sub py-2 d-block text-decoration-none small text-secondary" href="kriteria.php">
                 <i class="bi bi-bookmark-star me-2"></i>Data Kriteria
               </a>
-              <a class="nav-link-sub py-2 d-block text-decoration-none small text-secondary" href="alternatif.php">
-                <i class="bi bi-phone me-2"></i>Data Alternatif
+              <a class="nav-link-sub py-2 d-block text-decoration-none small fw-bold text-primary" href="alternatif.php">
+                <i class="bi bi-bookmark-star-fill me-2"></i>Data Alternatif
               </a>
             </div>
           </div>

@@ -75,7 +75,7 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
               <a class="nav-link-sub py-2 d-block text-decoration-none small text-secondary" href="kriteria.php">
                 <i class="bi bi-bookmark-star me-2"></i>Data Kriteria
               </a>
-              <a class="nav-link-sub py-2 d-block text-decoration-none small fw-bold text-primary" href="alternatif.php">
+              <a class="nav-link-sub py-2 d-block text-decoration-none small text-secondary" href="alternatif.php">
                 <i class="bi bi-phone me-2"></i>Data Alternatif
               </a>
             </div>
@@ -299,7 +299,7 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
 
       <footer class="admin-footer">
         <div class="container-fluid px-3 px-lg-4">
-          <span>Copyright 2026 Smartphone<br> Developed by <a target="_blank" class="fw-bold text-success" href="https://github.com/ginaa07">Regina Safarina</a> • Distributed by <a target="_blank" class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
+          <span>Copyright 2026 Smartphone<br> Developed by <a target="_blank" class="fw-bold text-success" href="https://github.com/ginaa07">Chaerul Umam Maulana & Regina Safarina</a> • Distributed by <a target="_blank" class="fw-bold text-success" href="https://themewagon.com">TI SE 2</a> </span>
           <span>Kelompok 10</span>
         </div>
       </footer>
