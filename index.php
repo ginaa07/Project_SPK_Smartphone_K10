@@ -29,7 +29,7 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="adminHMD professional admin dashboard template">
+  <meta name="description" content="smartphone professional smartphone evaluation dashboard">
   <title>Dashboard</title>
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -43,7 +43,7 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
 
     <aside class="admin-sidebar" id="adminSidebar" aria-label="Main navigation">
       <div class="sidebar-header">
-        <a class="brand-mark" href="index.php" aria-label="adminHMD dashboard">
+        <a class="brand-mark" href="index.php" aria-label="smartphone evaluation dashboard">
           <span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span>
           <span class="brand-copy">
             <span class="brand-title">Smartphone</span>
@@ -106,21 +106,10 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
     <div class="admin-main">
       <nav class="navbar admin-navbar navbar-expand bg-white">
         <div class="container-fluid px-3 px-lg-4">
-          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar" aria-expanded="true" aria-label="Toggle sidebar">
-            <span></span>
-            <span></span>
-            <span></span>
+          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="smartphone" aria-expanded="true" aria-label="Toggle sidebar">
+            <span></span><span></span><span></span>
           </button>
-
-          <form class="d-none d-md-flex ms-3 flex-grow-1" role="search">
-            <input class="form-control search-input" type="search" placeholder="Search parameters, smartsphones, reports" aria-label="Search">
-          </form>
-
           <div class="navbar-actions ms-auto">
-            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
-              <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
-            </button>
-            
             <div class="dropdown">
               <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="avatar-img avatar-sm" src="assets/images/avatar/avatar.jpg" alt="<?php echo $nama_admin; ?>">
