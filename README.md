@@ -6,17 +6,9 @@
 
 ## Getting Started
 
-1. Clone Repository
-```
-git clone https://github.com/ginaa07/Project_SPK_Smartphone_K10.git
-```
+## 👥 Kontributor Proyek
 
-1. Nama Kelompok 10
-```
-Chaerul Umam Maulana | TI SE 2
-Regina Safarina | TI SE 2
-```
-1. Nama Aplikasi
-```
-SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN SMARTPHONE 5JT AN TERBAIK MENGGUNAKAN METODE TOPSIS
-```
+| Nama | Peran | GitHub |
+| :--- | :--- | :--- |
+| **Regina Safarina** | Buat Sistem/Aplikasi SPK (hampir semuanya buat) dan Laporan | [@ginaa07](https://github.com/ginaa07) |
+| **Chaerul Umam Maulana** | Laporan SPK & buat Aplikasi SPK (Hasil Topsis) | [@chaerulumammaulana](https://github.com/ChaerulUmamMaulana) |
