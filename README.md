@@ -10,5 +10,5 @@
 
 | Nama | Peran | GitHub |
 | :--- | :--- | :--- |
-| **Regina Safarina** | Buat Sistem/Aplikasi SPK (hampir semuanya buat) dan Laporan | [@ginaa07](https://github.com/ginaa07) |
-| **Chaerul Umam Maulana** | Laporan SPK & buat Aplikasi SPK (Hasil Topsis) | [@chaerulumammaulana](https://github.com/ChaerulUmamMaulana) |
+| **Regina Safarina** | Buat Sistem/Aplikasi SPK (Login, dashboard, add user, user, Tables data kriteria, Alternatif matriks penilaian, hasil Topsis, solusi ideal positif dan negatif, Pengukuran Jarak Solusi, Kedekatan Relatif & Perangkingan Akhir dan Laporan SPK) | [@ginaa07](https://github.com/ginaa07) |
+| **Chaerul Umam Maulana** | Laporan SPK & buat Aplikasi SPK (Hasil Topsis, solusi ideal positif dan negatif, Pengukuran Jarak Solusi) | [@chaerulumammaulana](https://github.com/ChaerulUmamMaulana) |
