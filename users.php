@@ -3,25 +3,25 @@
 include 'config/koneksi.php';
 
 if (!isset($_SESSION['username'])) {
-    header("Location: auth/login.php");
-    exit;
+  header("Location: auth/login.php");
+  exit;
 }
 
 // 2. Proses Hapus User (Jika ada request hapus)
 if (isset($_GET['hapus'])) {
-    $id_hapus = mysqli_real_escape_string($koneksi, $_GET['hapus']);
-    
-    // Mencegah admin menghapus dirinya sendiri yang sedang login
-    if ($id_hapus == $_SESSION['username']) {
-        echo "<script>alert('Anda tidak bisa menghapus akun Anda sendiri yang sedang aktif!'); window.location='users.php';</script>";
+  $id_hapus = mysqli_real_escape_string($koneksi, $_GET['hapus']);
+
+  // Mencegah admin menghapus dirinya sendiri yang sedang login
+  if ($id_hapus == $_SESSION['username']) {
+    echo "<script>alert('Anda tidak bisa menghapus akun Anda sendiri yang sedang aktif!'); window.location='users.php';</script>";
+  } else {
+    $query_hapus = mysqli_query($koneksi, "DELETE FROM users WHERE username = '$id_hapus'");
+    if ($query_hapus) {
+      echo "<script>alert('User berhasil dihapus!'); window.location='users.php';</script>";
     } else {
-        $query_hapus = mysqli_query($koneksi, "DELETE FROM users WHERE username = '$id_hapus'");
-        if ($query_hapus) {
-            echo "<script>alert('User berhasil dihapus!'); window.location='users.php';</script>";
-        } else {
-            echo "<script>alert('Gagal menghapus user.'); window.location='users.php';</script>";
-        }
+      echo "<script>alert('Gagal menghapus user.'); window.location='users.php';</script>";
     }
+  }
 }
 
 // 3. Ambil hitungan total user di database untuk mengisi metric box secara riil
@@ -32,6 +32,7 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +73,8 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
           <span class="nav-text">Add User</span>
         </a>
         <div class="nav-item-dropdown">
-          <a class="nav-link dropdown-toggle" href="#tablesDropdown" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="tablesDropdown">
+          <a class="nav-link dropdown-toggle" href="#tablesDropdown" data-bs-toggle="collapse" role="button"
+            aria-expanded="true" aria-controls="tablesDropdown">
             <span class="nav-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
             <span class="nav-text">Tables</span>
           </a>
@@ -96,45 +98,39 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
           <span class="nav-text">Hasil TOPSIS</span>
         </a>
       </nav>
-
-      <div class="sidebar-user">
-        <img class="avatar-img avatar-md sidebar-user-avatar" src="assets/images/avatar/avatar.jpg" alt="<?php echo $nama_admin; ?>">
-        <strong><?php echo $nama_admin; ?></strong>
-        <small>Active Workspace</small>
-      </div>
-
-      <div class="sidebar-footer">
-        <span class="status-dot"></span>
-        <span class="sidebar-footer-text">System running smoothly</span>
-      </div>
     </aside>
 
     <div class="admin-main">
       <nav class="navbar admin-navbar navbar-expand bg-white">
         <div class="container-fluid px-3 px-lg-4">
-          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar" aria-expanded="true" aria-label="Toggle sidebar">
+          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-controls="adminSidebar"
+            aria-expanded="true" aria-label="Toggle sidebar">
             <span></span>
             <span></span>
             <span></span>
           </button>
 
           <form class="d-none d-md-flex ms-3 flex-grow-1" role="search">
-            <input class="form-control search-input" type="search" placeholder="Search users, roles, teams" aria-label="Search">
+            <input class="form-control search-input" type="search" placeholder="Search users, roles, teams"
+              aria-label="Search">
           </form>
 
           <div class="navbar-actions ms-auto">
-            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
+            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme"
+              title="Switch color theme">
               <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
             </button>
-            
+
             <div class="dropdown">
-              <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="avatar-img avatar-sm" src="assets/images/avatar/avatar.jpg" alt="<?php echo $nama_admin; ?>">
+              <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 <span class="profile-name d-none d-sm-inline"><?php echo $nama_admin; ?></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="users.php">Manage Users</a></li>
-                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
                 <li><a class="dropdown-item" href="auth/logout.php">Sign out</a></li>
               </ul>
             </div>
@@ -154,7 +150,8 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
               </div>
             </div>
             <div class="heading-actions">
-              <a class="btn btn-primary btn-sm" href="add-user.php"><i class="bi bi-person-plus" aria-hidden="true"></i> Add User</a>
+              <a class="btn btn-primary btn-sm" href="add-user.php"><i class="bi bi-person-plus" aria-hidden="true"></i>
+                Add User</a>
             </div>
           </div>
 
@@ -215,12 +212,15 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
           <section class="panel mt-3">
             <div class="panel-header">
               <div>
-                <h2 class="h5 mb-1 section-title"><i class="bi bi-table" aria-hidden="true"></i><span>User List</span></h2>
+                <h2 class="h5 mb-1 section-title"><i class="bi bi-table" aria-hidden="true"></i><span>User List</span>
+                </h2>
                 <p class="text-muted mb-0">Search, review, and manage team member accounts.</p>
               </div>
               <div class="d-flex flex-wrap gap-2">
-                <input class="form-control form-control-sm table-search" type="search" placeholder="Search users" data-table-search="usersTable" aria-label="Search users">
-                <a class="btn btn-primary btn-sm" href="add-user.php"><i class="bi bi-person-plus" aria-hidden="true"></i> Add User</a>
+                <input class="form-control form-control-sm table-search" type="search" placeholder="Search users"
+                  data-table-search="usersTable" aria-label="Search users">
+                <a class="btn btn-primary btn-sm" href="add-user.php"><i class="bi bi-person-plus"
+                    aria-hidden="true"></i> Add User</a>
               </div>
             </div>
             <div class="table-responsive">
@@ -237,28 +237,31 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
                 <tbody>
                   <?php
                   $q_data = mysqli_query($koneksi, "SELECT * FROM users ORDER BY username ASC");
-                  while($row = mysqli_fetch_assoc($q_data)):
-                  ?>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center fw-bold" style="width: 32px; height: 32px; font-size: 12px;">
-                          <?php echo strtoupper(substr($row['username'], 0, 2)); ?>
+                  while ($row = mysqli_fetch_assoc($q_data)):
+                    ?>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <div
+                            class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center fw-bold"
+                            style="width: 32px; height: 32px; font-size: 12px;">
+                            <?php echo strtoupper(substr($row['username'], 0, 2)); ?>
+                          </div>
+                          <div>
+                            <p class="fw-semibold mb-0"><?php echo $row['username']; ?></p>
+                          </div>
                         </div>
-                        <div>
-                          <p class="fw-semibold mb-0"><?php echo $row['username']; ?></p>
-                        </div>
-                      </div>
-                    </td>
-                    <td><?php echo $row['nama'] ?? 'Administrator'; ?></td>
-                    <td><?php echo $row['email'] ?? '-'; ?></td>
-                    <td><span class="badge text-bg-success">Active</span></td>
-                    <td class="text-end">
-                      <a class="btn btn-danger btn-sm py-1 px-2" href="users.php?hapus=<?php echo $row['username']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus user <?php echo $row['username']; ?>?');">
-                        <i class="bi bi-trash small"></i> Delete
-                      </a>
-                    </td>
-                  </tr>
+                      </td>
+                      <td><?php echo $row['nama'] ?? 'Administrator'; ?></td>
+                      <td><?php echo $row['email'] ?? '-'; ?></td>
+                      <td><span class="badge text-bg-success">Active</span></td>
+                      <td class="text-end">
+                        <a class="btn btn-danger btn-sm py-1 px-2" href="users.php?hapus=<?php echo $row['username']; ?>"
+                          onclick="return confirm('Apakah Anda yakin ingin menghapus user <?php echo $row['username']; ?>?');">
+                          <i class="bi bi-trash small"></i> Delete
+                        </a>
+                      </td>
+                    </tr>
                   <?php endwhile; ?>
                 </tbody>
               </table>
@@ -269,7 +272,9 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
 
       <footer class="admin-footer">
         <div class="container-fluid px-3 px-lg-4">
-          <span>Copyright 2026 adminHMD. <br> Developed by <a target="_blank" class="fw-bold text-success" href="https://github.com/ginaa07">Regina Safarina</a> • Distributed by <a target="_blank" class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
+          <span>Copyright 2026 adminHMD. <br> Developed by <a target="_blank" class="fw-bold text-success"
+              href="https://github.com/ginaa07">Regina Safarina</a> • Distributed by <a target="_blank"
+              class="fw-bold text-success" href="https://themewagon.com">ThemeWagon</a> </span>
           <span>Professional dashboard template.</span>
           <span>User management dashboard.</span>
         </div>
@@ -280,4 +285,5 @@ $nama_admin = $_SESSION['nama'] ?? $_SESSION['username'];
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

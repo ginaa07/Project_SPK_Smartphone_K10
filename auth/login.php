@@ -1,8 +1,11 @@
 <?php
-// 1. Hubungkan ke database dan mulai session
+// TENTUAN UTAMA: Selalu mulai session di baris paling atas sebelum kode lainnya!
+session_start();
+
+// 1. Hubungkan ke database
 include '../config/koneksi.php';
 
-// Jika user sudah dalam keadaan login, langsung alihkan ke dashboard (index.php)
+// Jika user sudah dalam keadaan login, langsung alihkan keluar folder auth ke dashboard (index.php)
 if (isset($_SESSION['username'])) {
     header("Location: ../index.php");
     exit;
@@ -13,18 +16,22 @@ $error = "";
 // 2. Cek apakah tombol Sign In diklik
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userInput = mysqli_real_escape_string($koneksi, $_POST['email_or_username']);
-    $password  = $_POST['password'];
+    // Direkomendasikan tetap menggunakan escape string demi keamanan data input
+    $password  = mysqli_real_escape_string($koneksi, $_POST['password']);
 
-$query  = "SELECT * FROM users WHERE username='$userInput'";
+    // Query mencari user berdasarkan username
+    $query  = "SELECT * FROM users WHERE username='$userInput'";
     $result = mysqli_query($koneksi, $query);
 
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         
+        // Pengecekan password (disesuaikan dengan penyimpanan plain-text/MD5/hash di DB kamu)
         if ($password === $row['password']) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['nama']     = $row['nama'] ?? 'Admin';
             
+            // BERHASIL LOGIN: Keluar dari folder auth menuju index.php
             header("Location: ../index.php");
             exit;
         } else {
@@ -40,7 +47,7 @@ $query  = "SELECT * FROM users WHERE username='$userInput'";
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Workspace | adminHMD</title>
+  <title>Login</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/vendors/bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="../assets/css/style.css">
@@ -58,7 +65,7 @@ $query  = "SELECT * FROM users WHERE username='$userInput'";
     /* Sisi Kiri: Visual Brand */
     .auth-sidebar-visual {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), 
-                  url('../assets/images/png/dasher-ui-bootstrap-5.jpg') no-repeat center center;
+                  url('../assets/images/png/dasher-ui.png') no-repeat center center;
       background-size: cover;
       display: flex;
       flex-direction: column;

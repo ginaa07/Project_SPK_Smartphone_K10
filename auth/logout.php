@@ -15,7 +15,7 @@ if (ini_get("session.use_cookies")) {
 }
 session_destroy();
 
-// 4. Alihkan halaman langsung ke login.php
+// 4. Alihkan halaman ke login.php yang berada di dalam folder auth yang sama
 header("Location: login.php");
 exit;
 ?>
