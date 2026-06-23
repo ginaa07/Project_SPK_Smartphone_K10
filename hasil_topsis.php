@@ -124,9 +124,7 @@ $current_page = 'hasil_topsis.php';
           </div>
 
           <?php
-          // ==========================================
           // 1. AMBIL DATA KRITERIA & ALTERNATIF
-          // ==========================================
           $kriteria = [];
           $q_kriteria = mysqli_query($koneksi, "SELECT * FROM kriteria ORDER BY id_kriteria ASC");
           while ($row = mysqli_fetch_assoc($q_kriteria)) {
@@ -152,9 +150,8 @@ $current_page = 'hasil_topsis.php';
           if (empty($matrix_x) || empty($kriteria)) {
             echo "<div class='alert alert-warning shadow-sm'><i class='bi bi-exclamation-triangle me-2'></i>Data penilaian atau kriteria masih kosong! Selesaikan pengisian matriks penilaian terlebih dahulu.</div>";
           } else {
-            // ==========================================
-            // 2. HITUNG PEMBAGI NORMALISASI
-            // ==========================================
+
+          // 2. HITUNG PEMBAGI NORMALISASI
             $pembagi = [];
             foreach ($kriteria as $id_k => $detail) {
               $total_kuadrat = 0;
@@ -165,9 +162,7 @@ $current_page = 'hasil_topsis.php';
               $pembagi[$id_k] = sqrt($total_kuadrat);
             }
 
-            // ==========================================
             // 3. HITUNG MATRIKS TERNORMALISASI TERBOBOT (Y)
-            // ==========================================
             $y = [];
             foreach ($alternatif as $id_alt => $nama) {
               foreach ($kriteria as $id_k => $detail) {
@@ -177,10 +172,8 @@ $current_page = 'hasil_topsis.php';
               }
             }
 
-            // ==========================================
             // 4. HITUNG SOLUSI IDEAL POSITIF (A+) & NEGATIF (A-)
-            // PERBAIKAN: Toleransi pengecekan jika di DB tertulis 'keuntungan'/'benefit'
-            // ==========================================
+            
             $ideal_positif = [];
             $ideal_negatif = [];
 
@@ -207,9 +200,9 @@ $current_page = 'hasil_topsis.php';
               }
             }
 
-            // ==========================================
+            
             // 5. HITUNG JARAK EUCLIDEAN (D+ & D-) DAN KEDEKATAN RELATIF (V)
-            // ==========================================
+            
             $jarak_dan_kedekatan = [];
             foreach ($alternatif as $id_alt => $nama_alt) {
               $sum_positif = 0;
