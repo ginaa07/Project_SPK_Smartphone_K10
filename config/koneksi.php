@@ -1,7 +1,7 @@
 <?php
 $host     = "localhost";
 $username = "root";
-$password = ""; // Kosongkan jika menggunakan XAMPP default
+$password = ""; 
 $database = "spk_smartphone";
 
 $koneksi = mysqli_connect($host, $username, $password, $database);
